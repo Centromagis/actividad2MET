@@ -9,11 +9,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
+<meta name="author" content="Métodos y Simulación Estadística" />
 
 
 <title> Actividad 2</title>
 
-<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.27/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -30,6 +31,7 @@
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
@@ -217,6 +219,9 @@ $(document).ready(function () {
 </style>
 
 <!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
 
 
 
@@ -254,10 +259,19 @@ $(document).ready(function () {
 
 <div id="header">
 
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
 
 
 <h1 class="title toc-ignore"><span style="color:#034a94">
 <strong>Actividad 2</strong></span></h1>
+<h4 class="author">Métodos y Simulación Estadística</h4>
 
 </div>
 
@@ -276,11 +290,11 @@ utilizaremos se plantean los siguientes problemas:</p>
 class="math inline">\(\pi\)</span> </strong></span></h2>
 <p>La siguiente figura sugiere como estimar el valor de <span
 class="math inline">\(\pi\)</span> con una simulación. En la figura, un
-circuito con un área igual a <span class="math inline">\(\pi/4\)</span>,
+círcuito con un área igual a <span class="math inline">\(\pi/4\)</span>,
 está inscrito en un cuadrado cuya área es igual a 1. Se elige de forma
 aleatoria <span class="math inline">\(n\)</span> puntos dentro del
 cuadrado . La probabilidad de que un punto esté dentro del círculo es
-igual a la fracción del área del cuadrado que abarca a este, la cual es
+igual a la fracción del área del cuadrado que abarca a éste, la cual es
 <span class="math inline">\(\pi/4\)</span>. Por tanto, se puede estimar
 el valor de <span class="math inline">\(\pi/4\)</span> al contar el
 número de puntos dentro del círculo, para obtener la estimación de <span
@@ -344,7 +358,7 @@ con informe 1</p></li>
 <h2><span style="color:#FF7F00"><strong>Propiedades de los
 estimadores</strong></span></h2>
 <p>La simulación ayuda a entender y validad las propiedades de los
-estimadores estadísticos como son. insesgadez, eficiencia y la
+estimadores estadísticos como son, insesgadez, eficiencia y la
 consistencia principalmente. El siguiente problema permite evidenciar
 las principales características de un grupo de estimadores propuestos
 para la estimación de un parámetro asociado a un modelo de
@@ -561,6 +575,359 @@ con informe 4</p></li>
 <p></br></br></br></p>
 </div>
 </div>
+<div id="problema-5" class="section level1">
+<h1><span style="color:#034a94"><strong>Problema 5</strong></span></h1>
+<p><br/></p>
+<div
+id="relaciones-entre-la-potencia-el-tamaño-de-los-efectos-y-el-tamaño-de-la-muestra"
+class="section level2">
+<h2><span style="color:#FF7F00"><strong>Relaciones entre la potencia, el
+tamaño de los efectos y el tamaño de la muestra</strong></span></h2>
+<p></br></p>
+<p>El “efecto del tamaño” (o “tamaño del efecto”, en inglés “effect
+size”) en el contexto de la prueba de hipótesis se refiere a la magnitud
+de la diferencia o la fuerza de la relación que se está investigando
+entre las variables. En otras palabras, mide la cantidad de cambio o la
+importancia práctica de los resultados, más allá de simplemente
+determinar si una diferencia es estadísticamente significativa. El
+tamaño del efecto es crucial porque, incluso si una prueba estadística
+muestra que un resultado es significativo (es decir, rechazas la
+hipótesis nula), el tamaño del efecto te dice si esa diferencia es
+realmente importante en un sentido práctico o clínico. Por ejemplo, un
+estudio podría encontrar que un nuevo medicamento reduce la presión
+arterial de manera estadísticamente significativa, pero el tamaño del
+efecto te indicaría si la reducción es lo suficientemente grande como
+para tener relevancia clínica. En resumen, el tamaño del efecto
+proporciona una medida complementaria a la significancia estadística,
+ayudando a interpretar el verdadero impacto o importancia de los
+resultados encontrados.</p>
+<p></br></p>
+<p>En este problema, nos centraremos en una aplicación que requiere la
+aplicación de la prueba t de Student para comparar las medias entre dos
+grupos. En este contexto evaluaremos cómo el efecto de los tamaños o las
+diferencias en los tamaños muestrales de los grupos influyen en la
+potencia de la prueba. De manera formal, la potencia se define como la
+probabilidad de rechazar la hipótesis nula cuando la hipótesis
+alternativa es verdadera. De forma más coloquial, la potencia es la
+capacidad de una prueba estadística para identificar un efecto si este
+realmente existe. En general, desequilibrios muy marcados en los tamaños
+de muestra tienden a reducir la potencia estadística, incluso cuando se
+asocian con tamaños de efecto considerables, lo que aumenta la
+probabilidad de cometer un error de tipo II. Para fundamentar esta
+afirmación, debes analizar diferentes resultados computacionales que se
+presentan a continuación.</p>
+<p></br></br></p>
+<div id="caso-1-variando-los-tamaños-de-los-efectos-d"
+class="section level3">
+<h3><span style="color:#FF7F00"><strong>Caso 1: Variando los tamaños de
+los efectos (d)</strong></span></h3>
+<p>En los códigos del archivo llamado <strong>caso1.R</strong>, para
+cada tamaño fijo de los efectos <span class="math inline">\(d\)</span>,
+se modela la relación entre el tamaño muestral y la potencia
+(manteniendo constante el nivel de significancia <span
+class="math inline">\(\alpha=0.05\)</span>). En las figuras se
+visualizan los resultados para tamaño de efecto muy pequeño (<span
+class="math inline">\(d=0.1\)</span>), pequeño (<span
+class="math inline">\(d=0.2\)</span>), mediano (<span
+class="math inline">\(d=0.5\)</span>) y grande (<span
+class="math inline">\(d=0.8\)</span>). Repite el análisis usando 5
+valores distintos del nivel de significancia. ¿Cambian los resultados?
+¿Qué ocurre cuando el tamaño de muestra de los grupos que se comparan es
+de <span class="math inline">\(20\)</span>, <span
+class="math inline">\(60\)</span>, <span
+class="math inline">\(100\)</span> y <span
+class="math inline">\(140\)</span>? Analiza y compara los
+resultados.</p>
+<p></br></br></p>
+</div>
+<div id="caso-2-variando-los-tamaños-muestrales" class="section level3">
+<h3><span style="color:#FF7F00"><strong>Caso 2: Variando los tamaños
+muestrales</strong></span></h3>
+<p>En los códigos del archivo llamado <strong>caso2.R</strong>, se
+modela la relación entre el tamaño del efecto <span
+class="math inline">\(d\)</span> y la potencia (manteniendo constante el
+nivel de significancia <span
+class="math inline">\(\alpha=0.05\)</span>). Para ello, se considera los
+siguientes tamaños de muestra, donde <span
+class="math inline">\(n_1\)</span> es el número de sujetos en el grupo 1
+y <span class="math inline">\(n_2\)</span> es el número de sujetos en el
+grupo 2:</p>
+<ul>
+<li><span class="math inline">\(n_1=28\)</span>, <span
+class="math inline">\(n_2=1406\)</span> : <span
+class="math inline">\(n_1\)</span> representa el <span
+class="math inline">\(2\)</span> % del tamaño total de la muestra de
+<span class="math inline">\(1434\)</span>.</li>
+<li><span class="math inline">\(n_1=144\)</span>, <span
+class="math inline">\(n_2=1290\)</span> : <span
+class="math inline">\(n_1\)</span> representa el <span
+class="math inline">\(10\)</span> % del tamaño total de la muestra de
+<span class="math inline">\(1434\)</span>.</li>
+<li><span class="math inline">\(_n1=287\)</span>, <span
+class="math inline">\(n_2=1147\)</span> : <span
+class="math inline">\(n_1\)</span> representa el <span
+class="math inline">\(20\)</span> % del tamaño total de la muestra de
+<span class="math inline">\(1434\)</span>.</li>
+<li><span class="math inline">\(n_1=430\)</span>, <span
+class="math inline">\(n_2=1004\)</span> : <span
+class="math inline">\(n_1\)</span> representa el <span
+class="math inline">\(30\)</span> % del tamaño total de la muestra de
+<span class="math inline">\(1434\)</span>.</li>
+<li><span class="math inline">\(n_1=574\)</span>, <span
+class="math inline">\(n_2=860\)</span> : <span
+class="math inline">\(n_1\)</span> representa el <span
+class="math inline">\(40\)</span> % del tamaño total de la muestra de
+<span class="math inline">\(1434\)</span>.</li>
+<li><span class="math inline">\(n_1=717\)</span>, <span
+class="math inline">\(n_2=717\)</span> : grupos de igual tamaño (esto es
+óptimo porque conduce a la potencia más alta para un tamaño de efecto
+dado).</li>
+</ul>
+<p>En la figura resultante, se trazaron las curvas de potencia para la
+prueba t de Student, en función del tamaño del efecto, asumiendo una
+tasa de error Tipo I del <span class="math inline">\(5\)</span> %. La
+comparación de diferentes curvas de potencia (basadas en el tamaño de la
+muestra de cada grupo) en el mismo gráfico es una representación visual
+útil de este análisis. En la figura también se trazó una línea
+discontinua horizontal en un nivel de potencia aceptable del 80% y una
+línea vertical en el tamaño del efecto que tendría que estar presente en
+nuestros datos para alcanzar el 80 % de potencia. Se observa que el
+tamaño del efecto debe ser superior a 0.54 para alcanzar un nivel de
+potencia aceptable dados tamaños de grupo altamente desequilibrados de
+<span class="math inline">\(n_1=28\)</span> y <span
+class="math inline">\(n_2=1406\)</span>, en comparación con todos los
+demás escenarios que conducen al 100% de potencia. Repite el análisis
+usando <span class="math inline">\(5\)</span> valores distintos del
+nivel de significancia. ¿Cambian los resultados? ¿Qué ocurre cuando
+<span class="math inline">\(n_1=28\)</span> y <span
+class="math inline">\(n_2=1406\)</span>? Analiza y compara los
+resultados.</p>
+<p></br></br></p>
+</div>
+<div id="referencia" class="section level3">
+<h3><strong>Referencia</strong>:</h3>
+<ul>
+<li>Teoría de Probabilidad y Estadística Matemática, Dr. rer. nat.
+Humberto LLinás Solano, Departamento de Matemáticas y Estadística,
+Universidad del Norte (Barranquilla, Colombia)</li>
+</ul>
+<p></br></br></p>
+<div id="código-caso1.r" class="section level4">
+<h4><span style="color:#696969"><strong>Código
+caso1.R</strong></span></h4>
+<pre class="r"><code>#Gráfica 1
+
+#Se necesita el paquete pwr 
+if(!require(pwr)){install.packages(&quot;pwr&quot;);library(&quot;pwr&quot;)}
+
+# t-TEST
+# Se aplicará power.t.test del paquete stats (ya en R). Calcula la potencia de la prueba t de una o dos muestras, o determina los parámetros para obtener un valor particular de la potencia.
+
+d&lt;-seq(.1,2,by=.1) # 20 tamaños de los efectos
+n&lt;-1:150 # Tamaños muestrales
+
+t.test.power.effect &lt;-as.data.frame(do.call(&quot;cbind&quot;,lapply(1:length(d),function(i)
+{
+  sapply(1:length(n),function(j)
+  {
+    power.t.test(n=n[j],d=d[i],sig.level=0.05,power=NULL,type= &quot;two.sample&quot;)$power
+  })
+})))
+
+# Si algunas potencias no se pueden calcular, se ajustan a cero:
+t.test.power.effect[is.na(t.test.power.effect)] &lt;- 0 
+colnames(t.test.power.effect)&lt;-paste (d,&quot;effect size&quot;)
+
+#Graficando los resultados
+
+prueba &lt;-t.test.power.effect #data frame de 150 X 20 (para graficar)
+cuts_num&lt;-c(2,5,8) # cortes
+
+#Cortes basados en: Cohen, J. (1988). Statistical Power Analysis for the Behavioral Sciences (2nd ed.). Hillsdale, NJ: Lawrence Erlbaum Associates, Publishers.
+cuts_cat&lt;-c(&quot;pequeño&quot;,&quot;medio&quot;,&quot;grande&quot;) 
+
+columnas &lt;- 1:ncol(prueba) #Lista de los valores 1:20
+color_linea&lt;-rainbow(length(columnas), alpha=.5) # Lista de 20 colores
+grosor_linea=3 # Grosor de la línea
+
+#Para el tipo de línea: (“blank”, “solid”, “dashed”, “dotted”, “dotdash”, “longdash”, “twodash”) ó  (0, 1, 2, 3, 4, 5, 6). 
+#Note que lty = “solid” is idéntica a lty=1.
+
+tipo_linea &lt;- rep(1,length(color_linea))        #Repetir length(color)=20 veces el 1
+tipo_linea[cuts_num]&lt;-c(2:(length(cuts_num)+1)) #Asignar 2, 3, 4 en las posiciones 2, 5, 8 de tipo_linea
+
+#Resaltar posiciones importantes
+cuts_num&lt;-c(2,5,8) # Cortes
+
+#Cortes basados en: Cohen, J. (1988). Statistical Power Analysis for the Behavioral Sciences (2nd ed.). Hillsdale, NJ: Lawrence Erlbaum Associates, Publishers.
+cuts_cat&lt;-c(&quot;pequeño&quot;,&quot;medio&quot;,&quot;grande&quot;) 
+color_linea[cuts_num]&lt;-c(&quot;black&quot;)
+
+efecto &lt;- d # Listado de los 20 valores de 20
+efecto[cuts_num] &lt;- cuts_cat  #Reemplazar en &quot;efecto&quot; las posiciones cuts_num (2, 5, 8) por las categorías de cuts_cat
+
+par(fig=c(0,.8,0,1),new=TRUE)
+
+#Gráfica
+plot(1, type=&quot;n&quot;, #no produce puntos ni líneas
+     frame.plot=FALSE, 
+     xlab=&quot;Tamaño muestral&quot;, ylab=&quot;Potencia&quot;, 
+     xlim=c(1,150),  ylim=c(0,1), 
+     main=&quot;t-Test&quot;, axes = FALSE)
+
+#Editando los ejes, grid, etc.
+abline(v=seq(0,150,by=10), col = &quot;lightgray&quot;, lty = &quot;dotted&quot;) # Grid vertical
+abline(h=seq(0,1,by=.05), col = &quot;lightgray&quot;, lty = &quot;dotted&quot;)  # Grid horizontal
+axis(1,seq(0,150,by=10)) # Números en eje X
+axis(2,seq(0,1,by=.05))  # Números en eje Y
+
+#Plot de las lineas 
+#columnas &lt;- 1:ncol(prueba) # lista de los valores 1:20
+for(i in 1:length(columnas)) #length(columnas)=20
+{
+  lines(1:150,
+        #prueba (data frame de 150 X 20, para graficar)
+        #columna &lt;- 1:ncol(prueba) listado de valores 1:20 
+        prueba[,columnas[i]], #filtrar &quot;prueba&quot; para valor de columna
+        col=color_linea[i],   #color_linea[cuts_num]&lt;-c(&quot;black&quot;)
+        lwd=grosor_linea,     #grosor de cada linea
+        lty=tipo_linea[i]     #tipo_linea[cuts_num]&lt;-c(2:(length(cuts_num)+1))
+  )
+}
+
+#Leyendas
+par(fig=c(.65,1,0,1),new=TRUE)
+plot.new()
+legend(&quot;top&quot;,legend=efecto, col=color_linea, lwd=3, lty=tipo_linea, title=&quot;Tamaño efecto&quot;, 
+       bty=&quot;n&quot; #Opciones: o (complete box), n (no box), 7, L, C, U
+)
+
+#Gráfica 2
+
+#plot using ggplot2
+
+#library(ggplot2)
+#library(reshape)
+#library(plotly)
+
+obj &lt;- cbind(size=1:150, prueba) #Agregando el tamaño al data frame &quot;prueba&quot; 
+
+# Usar melt y unir con &quot;effect&quot; para el mapeo
+#El data frame &quot;obj&quot; se reconstruye con respecto al parámetro id=&quot;size&quot;. 
+melted &lt;- cbind(reshape::melt(obj, id=&quot;size&quot;), effect=rep(d,each=150)) 
+
+p&lt;- ggplot(data=melted, aes(x=size, y=value, color=as.factor(effect))) + 
+  geom_line(size=0.7,alpha=.5) +
+  ylab(&quot;Potencia&quot;) + 
+  xlab(&quot;Tamaño muestral&quot;) + 
+  ggtitle(&quot;t-Test&quot;)+
+  theme_bw() +
+  #guides(fill=guide_legend(title=&quot;Efecto&quot;))
+  #scale_fill_discrete(name = &quot;Efecto&quot;)
+  #labs(fill=&#39;Efecto&#39;) 
+  #scale_fill_manual(&quot;Efecto&quot;#,values=c(&quot;orange&quot;,&quot;red&quot;)
+  scale_color_discrete(name = &quot;Tamaño del efecto&quot;)    
+
+# Interactive plot
+plotly::ggplotly(p)</code></pre>
+<p></br></br></p>
+</div>
+<div id="código-caso2.r" class="section level4">
+<h4><span style="color:#696969"><strong>Código
+caso2.R</strong></span></h4>
+<pre class="r"><code>#library(dplyr)    
+#library(tidyr)    #Para manipulación de datos: separate, gather, spread
+#library(ggplot2)  
+#library(plotly)   #Para curvas de potencias interactivas
+#library(pwr)      #Para cálculo de las potencias
+
+#Generar cálculos de las potencias con la funcion pwr.t2n.test.
+#Es un t-test para 2 muestras con tamaños diferentes 
+#Aquí: d es el tamaño del efecto, Power= potencia de la prueba= 1-beta): 
+
+#pwr.t2n.test(n1 = NULL, n2= NULL, d = NULL, sig.level = 0.05, power = NULL,  alternative = c(&quot;two.sided&quot;,  &quot;less&quot;,&quot;greater&quot;))
+
+ptab &lt;- cbind(NULL, NULL)       
+
+for (i in seq(0,1, length.out = 200)){
+  pwrt1 &lt;- pwr.t2n.test(n1 = 28, n2 = 1406, 
+                        sig.level = 0.05, power = NULL, 
+                        d = i, alternative=&quot;two.sided&quot;)
+  pwrt2 &lt;- pwr.t2n.test(n1 = 144, n2 = 1290, 
+                        sig.level = 0.05, power = NULL, 
+                        d = i, alternative=&quot;two.sided&quot;)
+  pwrt3 &lt;- pwr.t2n.test(n1 = 287, n2 = 1147, 
+                        sig.level = 0.05, power = NULL, 
+                        d = i, alternative=&quot;two.sided&quot;)
+  pwrt4 &lt;- pwr.t2n.test(n1 = 430, n2 = 1004, 
+                        sig.level = 0.05, power = NULL, 
+                        d = i, alternative=&quot;two.sided&quot;)
+  pwrt5 &lt;- pwr.t2n.test(n1 = 574, n2 = 860, 
+                        sig.level = 0.05, power = NULL, 
+                        d = i, alternative=&quot;two.sided&quot;)
+  pwrt6 &lt;- pwr.t2n.test(n1 = 717, n2 = 717, 
+                        sig.level = 0.05, power = NULL, 
+                        d = i, alternative=&quot;two.sided&quot;)
+  
+  #Es un data frame de tamaño 200 por 12: 
+  ptab &lt;- rbind(ptab, cbind(pwrt1$d, pwrt1$power,
+                            pwrt2$d, pwrt2$power,
+                            pwrt3$d, pwrt3$power,
+                            pwrt4$d, pwrt4$power,
+                            pwrt5$d, pwrt5$power,
+                            pwrt6$d, pwrt6$power))
+}
+
+
+#Es un data frame de tamaño 200 por 13 (la 1ra columna es ID)
+ptab &lt;- cbind(seq_len(nrow(ptab)), ptab)
+
+colnames(ptab) &lt;- c(&quot;id&quot;,&quot;n1=28, n2=1406;effect size&quot;,&quot;n1=28, n2=1406;power&quot;,
+                    &quot;n1=144, n2=1290;effect size&quot;,&quot;n1=144, n2=1290;power&quot;,
+                    &quot;n1=287, n2=1147;effect size&quot;,&quot;n1=287, n2=1147;power&quot;,
+                    &quot;n1=430, n2=1004;effect size&quot;,&quot;n1=430, n2=1004;power&quot;,
+                    &quot;n1=574, n2=860;effect size&quot;,&quot;n1=574, n2=860;power&quot;,
+                    &quot;n1=717, n2=717;effect size&quot;,&quot;n1=717, n2=717;power&quot;)
+
+#gather se usa  para &quot;reunir&quot; un par key-value. En este caso, en 3 columnas: ID, variables y respuestas numericas
+temp1 &lt;- ptab %&gt;% as.data.frame() %&gt;%   gather(key = name, value = val, 2:13)
+
+#Separar celdas en columnas, de acuerdo a una condición (sep=). En este caso, se separó &quot;name&quot; en dos columnas: samples y pruebas 
+temp2 &lt;- temp1 %&gt;%   separate(col = name, into = c(&quot;samples&quot;, &quot;pruebas&quot;), sep = &quot;;&quot;)
+
+
+#La función spread hace lo opuesto a gather. Son funciones complementarias. 
+#Es decir, si al resultado de aplicar la función spread le aplicamos la función gather llegamos al dataset original.
+temp3 &lt;- temp2 %&gt;%   spread(key = pruebas, value = val)
+
+#Convertir la variable &quot;samples&quot; a factor.
+temp3$samples &lt;- factor(temp3$samples, 
+                        levels = c(&quot;n1=28, n2=1406&quot;, &quot;n1=144, n2=1290&quot;, 
+                                   &quot;n1=287, n2=1147&quot;, &quot;n1=430, n2=1004&quot;,
+                                   &quot;n1=574, n2=860&quot;, &quot;n1=717, n2=717&quot;)
+)
+
+#Gráfica
+p&lt;- ggplot(temp3, aes(x = `effect size`, y = power, color = samples)) +
+  geom_line(size=1) + 
+  
+  theme_bw() + 
+  theme(axis.text=element_text(size=10), 
+        axis.title=element_text(size=10), 
+        legend.text=element_text(size=10)) +
+  
+  geom_vline(xintercept = .54, linetype = 2) +
+  geom_hline(yintercept = 0.80, linetype = 2)+
+  
+  labs(x=&quot;Effect size&quot;, y=&quot;Power&quot;) +
+  scale_color_discrete(name = &quot;Sampling size&quot;) 
+
+# so simple to make interactive plots
+plotly::ggplotly(p)</code></pre>
+</div>
+</div>
+</div>
+</div>
 
 
 
@@ -595,6 +962,11 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
 
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
