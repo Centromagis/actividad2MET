@@ -31,7 +31,7 @@ knitr::include_graphics("img/banner3.png")
 ```
 
 
-El proceso de simulación constituye una herramienta poderosa para la estadística que se pueden emplear para entender relaciones complejas y estimar valores difíciles de calcular directamente.  Para entenderlo utilizaremos se plantean los siguientes problemas:
+El proceso de simulación constituye una herramienta poderosa para la estadística que se pueden emplear para entender relaciones complejas y estimar valores difíciles de calcular directamente. Para entenderlo utilizaremos se plantean los siguientes problemas:
 
 </br></br>
 
@@ -41,7 +41,7 @@ El proceso de simulación constituye una herramienta poderosa para la estadísti
 
 ## <span style="color:#FF7F00">**Estimación del valor de $\pi$ **</span> 
 
-La siguiente figura sugiere como estimar el valor de $\pi$ con una simulación. En la figura, un círcuito con un área igual a $\pi/4$, está inscrito en un cuadrado cuya área es igual a 1. Se elige de forma aleatoria $n$ puntos dentro del cuadrado . La probabilidad de que un punto esté dentro del círculo es igual a la fracción del área del cuadrado que abarca a éste, la cual es $\pi/4$. Por tanto, se puede estimar el valor de $\pi/4$ al contar el número de puntos dentro del círculo, para obtener la estimación de $\pi/4$ . De este último resultado se encontrar una aproximación para el valor de $\pi$ . 
+La siguiente figura sugiere como estimar el valor de $\pi$ con una simulación. En la figura, un círculo con un área igual a $\pi/4$, está inscrito en un cuadrado cuya área es igual a 1. Se elige de forma aleatoria $n$ puntos dentro del cuadrado . La probabilidad de que un punto esté dentro del círculo es igual a la fracción del área del cuadrado que abarca a éste, la cual es $\pi/4$. Por tanto, se puede estimar el valor de $\pi/4$ al contar el número de puntos dentro del círculo, para obtener la estimación de $\pi/4$ . De este último resultado se encontrar una aproximación para el valor de $\pi$ . 
 
 
 ```{r, echo=FALSE, out.width="50%", fig.align = "center"}
@@ -112,7 +112,7 @@ Sean  $X_{1}$, $X_{2}$, $X_{3}$ y $X_{4}$, una muestra aleatoria de tamaño $n =
 
 * Genere una muestras de n=20, 50, 100 y 1000  para cada uno de los estimadores planteados.
 
-* En cada caso evalue las propiedades de insesgadez, eficiencia y consistencia 
+* En cada caso evalúe las propiedades de insesgadez, eficiencia y consistencia 
 
 * Suponga un valor para el parámetro $\theta$
 
@@ -209,7 +209,7 @@ Construya el intervalo de confianza por los dos métodos y compare los resultado
 <div class="content-box-gray">
 ### <span style="color:#686868">**Nota**</span>
 
-* las muestras bootstrap se pueden obtener a partir de muestreo aleatorio con repetición (o tambien llamado con sustitución)
+* las muestras bootstrap se pueden obtener a partir de muestreo aleatorio con repetición (o también llamado con sustitución)
 
 * **Entregable** : enlace en **RPubs** con informe 4
 
