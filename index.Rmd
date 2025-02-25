@@ -31,7 +31,7 @@ knitr::include_graphics("img/banner3.png")
 ```
 
 
-El proceso de simulación constituye una herramienta poderosa para la estadística que se pueden emplear para entender relaciones complejas y estimar valores difíciles de calcular directamente. Para entenderlo utilizaremos se plantean los siguientes problemas:
+La simulación es una herramienta poderosa en estadística, útil para comprender relaciones complejas y estimar valores difíciles de calcular directamente. Para ilustrar su aplicación, se plantean los siguientes problemas:
 
 </br></br>
 
@@ -39,41 +39,70 @@ El proceso de simulación constituye una herramienta poderosa para la estadísti
 
 <br/>
 
-## <span style="color:#FF7F00">**Estimación del valor de $\pi$ **</span> 
+## <span style="color:#FF7F00">**Estimación de la Probabilidad y la Media**</span> 
 
-La siguiente figura sugiere como estimar el valor de $\pi$ con una simulación. En la figura, un círculo con un área igual a $\pi/4$, está inscrito en un cuadrado cuya área es igual a 1. Se elige de forma aleatoria $n$ puntos dentro del cuadrado . La probabilidad de que un punto esté dentro del círculo es igual a la fracción del área del cuadrado que abarca a éste, la cual es $\pi/4$. Por tanto, se puede estimar el valor de $\pi/4$ al contar el número de puntos dentro del círculo, para obtener la estimación de $\pi/4$ . De este último resultado se encontrar una aproximación para el valor de $\pi$ . 
+Una empresa de servicio técnico recibe, en promedio, **5 solicitudes de reparación por hora**. Suponiendo que el *número de solicitudes* sigue una **distribución de Poisson**, realiza las siguientes actividades:
 
+a. Cálculo de probabilidad teórica:
 
-```{r, echo=FALSE, out.width="50%", fig.align = "center"}
-knitr::include_graphics("img/pi.png")
-```
+    - Calcula la probabilidad de que en una hora lleguen exactamente **3 solicitudes** usando la fórmula de la distribución de Poisson. Expresa el resultado como \( P(X=3) \).
 
-<br/>
+ b. Simulación con una muestra:
+ 
+    - Genera una muestra aleatoria de tamaño **n = 1000** con `rpois(n, lambda = 5)`.
+    - Calcula la frecuencia relativa para \( X=3 \) (\( f_n(X=3) \)).
+    - Compara e interpreta el resultado frente a la probabilidad teórica.
 
-Pasos sugeridos:
+ c. Análisis de la variabilidad entre muestras:
+    - Genera **100 muestras aleatorias** de tamaño **n = 1000**.
+    - Calcula la frecuencia relativa para \( X=3 \) en cada muestra.
+    - Construye un gráfico de dispersión:
+      - **Eje X:** Indexación por cada muestra (1 a 100).
+      - **Eje Y:** Frecuencias relativas \( f_n(X=3) \).
+    - Dibuja una línea horizontal en \( P(X=3) \) y comenta si existe una tendencia.
 
-a. Genere $n$ coordenadas $x$:  $X_{1}$, . . . , $X_{n}$. Utilice la distribución uniforme con valor mínimo de $0$ y valor máximo de $1$. La distribución uniforme genera variables aleatorias que tienen la misma probabilidad de venir de cualquier parte del intervalo $(0, 1)$. 
+d. Impacto del tamaño muestral:
+    - Genera **muestras aleatorias** con tamaños: 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000.
+    - Calcula la frecuencia relativa de \( X=3 \) para cada tamaño.
+    - Construye un gráfico de dispersión:
+      - **Eje X:** Indexación (1 al 20) por cada tamaño muestral.
+      - **Eje Y:** Frecuencias relativas \( f_n(X=3) \).
+    - Dibuja la línea en \( P(X=3) \) y describe si aparece una tendencia.
 
-b. Genere $1000$ coordenadas $y$ : $Y_{1}, . . . , Y_{n}$, utilizando nuevamente la distribución uniforme con valor mínimo de $0$ y valor máximo de $1$.
+ e. Convergencia de la media muestral:
+    - Genera **100 muestras** de tamaño **n = 1000**.
+    - Calcula el promedio muestral de solicitudes en cada muestra.
+    - Construye un gráfico de dispersión:
+      - **Eje X:** Indexación por cada muestra (1 a 100).
+      - **Eje Y:** Promedios muestrales.
+    - Traza la línea horizontal en la media teórica (\(\lambda\)) y analiza la tendencia.
 
-c. Cada punto $(X_{i},Y_{i})$ se encuentra dentro del círculo si su distancia desde el centro $(0.5, 0.5)$ es menor a $0.5$. Para cada par $(X_{i},Y_{i})$ determine si la distancia desde el centro es menor a $0.5$. Esto último se puede realizar al calcular el valor $(X_{i}-0.5)^{2}+(Y_{i}-0.5)^{2}$, que es el cuadrado de la distancia, y al determinar si es menor que $0.25$.
+ f. Impacto del tamaño muestral en la media:
+    - Genera **muestras aleatorias** con tamaños: 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000.
+    - Calcula el promedio muestral para cada tamaño.
+    - Construye un gráfico de dispersión:
+      - **Eje X:** Indexación (1 al 20) por cada tamaño muestral.
+      - **Eje Y:** Promedios muestrales.
+    - Dibuja la línea horizontal en la media teórica (\(\lambda\)) y compara si el promedio se aproxima a medida que crece el tamaño.
 
-d. ¿Cuántos de los puntos están dentro del círculo? ¿Cuál es su estimación de $\pi$? 
-
-<br/>
+<br/><br/>
 
 <div class="content-box-gray">
-### <span style="color:#686868">**Nota**</span>
+### <span style="color:#686868">**Condiciones de entrega**</span>
 
-* Con sólo 1000 puntos, es probable que la estimación presente un error de 0.05 o más. Una simulación con 10000 y 100000 puntos tiene mayores probabilidades de dar como resultado una estimación muy cercana al valor verdadero.
+- La solución se debe presentar en un archivo HTML generado mediante RMarkdown (.Rmd).
+- Responde a los ejercicios en orden (de la **a** hasta la **f**).
+- Por cada ejercicio, incluye:
 
-* funciones recomendadas : `runif()`, `funtion(){}`  
-
-* **Entregable** : enlace en **RPubs** con informe 1
-
-Problema tomado de Navidi(2006) 
-
+  1. **Código R:** Con comentarios explicativos.
+  2. **Gráficos y cálculos:** Según lo solicitado.
+  3. **Interpretación:** Explicación clara de los resultados obtenidos.
+  
+- El archivo `.Rmd` y el HTML generado deben entregarse juntos.
+- Establece la semilla con tu código de estudiante: `set.seed(codigo)`.
+- Asegúrate de que todos los códigos compilen correctamente antes de la entrega.
 </div>
+
 
 </br></br></br>
 
@@ -81,48 +110,75 @@ Problema tomado de Navidi(2006)
 
 </br>
 
-## <span style="color:#FF7F00">**Propiedades de los estimadores**</span>
+## <span style="color:#FF7F00">**Propiedades de los Estimadores**</span>
 
-La simulación ayuda a entender y validad las propiedades de los estimadores estadísticos como son, insesgadez, eficiencia y la consistencia principalmente. El siguiente problema permite evidenciar las principales características de un grupo de estimadores propuestos para la estimación de un parámetro asociado a un modelo de probabilidad.
+Un centro de atención médica registra el tiempo de espera (en minutos) de los pacientes antes de ser atendidos. Se sabe que estos tiempos siguen una **distribución Gamma** con parámetros conocidos \(\alpha = 3\) (forma) y \(\beta = 2\) (escala). El parámetro que se supone desconocido en este problema es la media poblacional \( \theta = \alpha \beta \).
 
-
-Sean  $X_{1}$, $X_{2}$, $X_{3}$ y $X_{4}$, una muestra aleatoria de tamaño $n = 4$ cuya población la conforma una distribución exponencial con parámetro $\theta$ desconocido. Determine las características de cada uno de los siguientes estimadores propuestos:
-
-<br/>
-
-* $\widehat{\theta_1} = \dfrac{X_{1} + X_{2}}{6} + \dfrac{X_3 + X_4}{3}$
-
-<br/>
-
-* $\widehat{\theta_2} = \dfrac{(X_1 + 2 X_2 + 3 X_3 + 4 X_4)}{5}$
-
-<br/>
-
-* $\widehat{\theta_3} = \dfrac{X_1 + X_2 + X_3 + X_4}{4}$
-
-<br/>
-
-* $\widehat{\theta_4} = \dfrac{\min\{X_1,X_2,X_3,X_4\} + \max\{X_1,X_2,X_3,X_4\}}{2}$
+Sea \( X_{1}, X_{2}, \dots, X_{n} \) una muestra aleatoria de tamaño \( n \) independiente e identicamente distribuida extraída de esta población. Se proponen los siguientes estimadores para \( \theta \):
 
 
+1. **Estimador de la media muestral:**  
+   $$ \widehat{\theta_1} = \frac{1}{n} \sum_{i=1}^{n} X_{i} $$
 
-<br/>
+2. **Estimador basado en el rango:**  
+   $$ \widehat{\theta_2} = \frac{\min(X_{1}, \dots, X_{n}) + \max(X_{1}, \dots, X_{n})}{2} $$
+
+Realiza las siguientes actividades:
+
+ a. Simulación de estimadores:
+
+    - Genera **100 muestras** de tamaño \( n = 10 \) de una **distribución Gamma** con parámetros \(\alpha = 3\) y \(\beta = 2\). Para cada muestra, calcula los estimadores correspondientes. Luego, grafica los resultados utilizando una curva de densidad o un histograma de densidades para cada estimador. Realiza una interpretación de los gráficos obtenidos. Utiliza la función `rgamma(n, shape = alpha, scale = beta)` de **R** y establece una semilla `set.seed(123)` para asegurar la reproducibilidad de los resultados. Como valor 
+
+ b. Insesgadez: 
+ 
+    - Mediante una simulación computacional, estima la media de cada estimador y compárala con el valor verdadero de la media, \(\theta = 6\). Realiza un análisis utilizando gráficos y las estadísticas pertinentes para determinar cuál de los estimadores es el menos sesgado.
+
+ c. Consistencia: 
+    
+    - Mediante una simulación computacional, incrementa el tamaño muestral desde **n = 10** hasta **n = 1000**, utilizando un conjunto de valores representativos como 5, 10, 20, 30, 50, 60, 70, 80, 90, 100, 200, 300, 400, 500, 600, entre otros. Grafica cómo varía la variabilidad relativa de los estimadores a medida que aumenta el tamaño muestral. Realiza un análisis utilizando gráficos y las estadísticas necesarias para evaluar la consistencia de los estimadores.
+
+ d. Eficiencia:  
+  
+    - Mediante una simulación computacional, calcula la varianza muestral y el coeficiente de variación de cada estimador, y compáralos. Realiza un análisis utilizando gráficos y las estadísticas pertinentes para determinar cuál de los estimadores es el más eficiente.
+
+
+
+</br></br>
 <div class="content-box-gray">
-### <span style="color:#686868">**Nota**</span>
+### <span style="color:#686868">**Condiciones de entrega**</span>
 
-* Genere una muestras de n=20, 50, 100 y 1000  para cada uno de los estimadores planteados.
+- Para generar muestras de la distribución Gamma en **R**:
 
-* En cada caso evalúe las propiedades de insesgadez, eficiencia y consistencia 
+  - Parámetros de la distribución Gamma
+   
+    <pre>
+    alpha <- 3  # Forma
+    beta <- 2   # Escala
+    n <- 50     # Tamaño de muestra
+    m <- 100    # Número de muestras
+    </pre>
 
-* Suponga un valor para el parámetro $\theta$
+  - Generación de 100 muestras de tamaño n=50
+    
+    <pre>
+    set.seed(123)  # Para reproducibilidad
+    muestras <- replicate(m, rgamma(n, shape = alpha, scale = beta))
+    </pre>
+    
+- La solución se debe presentar en un archivo HTML generado mediante RMarkdown (.Rmd).
+- Responde a los ejercicios en orden (de la **a** hasta la **d**).
+- Por cada ejercicio, incluye:
 
-* funciones recomendadas : `function(){}`,  `rexp()` ,  `data.frame()`,   `apply()`, `boxplot()`
-
-* **Entregable** : enlace en **RPubs** con informe 2
-
+  1. **Código R:** Con comentarios explicativos.
+  2. **Gráficos y cálculos:** Según lo solicitado.
+  3. **Interpretación:** Explicación clara de los resultados obtenidos.
+  
+- El archivo `.Rmd` y el HTML generado deben entregarse juntos.
+- Establece la semilla con tu código de estudiante: `set.seed(codigo)`.
+- Asegúrate de que todos los códigos compilen correctamente antes de la entrega.
 </div>
 
-<br/>
+
 
 
 
@@ -136,41 +192,72 @@ Sean  $X_{1}$, $X_{2}$, $X_{3}$ y $X_{4}$, una muestra aleatoria de tamaño $n =
 
 </br>
 
-El Teorema del Límite Central es uno de los más importantes en la inferencia estadística y habla sobre la convergencia de los estimadores como la proporción muestral a la distribución normal. Algunos autores afirman que esta aproximación es bastante buena a partir del umbral $n > 30$.
+En una planta de fabricación de componentes electrónicos, se modela el **tiempo de funcionamiento continuo de una máquina antes de necesitar mantenimiento** mediante una **distribución Gamma**. El análisis ha determinado que el tiempo hasta el primer mantenimiento sigue una **distribución Gamma** con parámetros \( \alpha = 5 \) (forma) y \( \beta = 400 \) (escala).
 
-A continuación se describen los siguientes pasos para su verificación:
+A continuación, se presentan una serie de actividades para explorar esta distribución y su aplicación en el contexto del mantenimiento predictivo.
 
-</br>
+ a. Cálculo de la media y varianza de la población
 
-a. Realice una simulación en la cual genere una población de $n=1000$ (Lote), donde el porcentaje de individuos (supongamos plantas) enfermas sea del 50%.
+    - Determina la **media** y **varianza** de la población de los tiempos \( X \) hasta que se requiere mantenimiento de las máquinas en este contexto.  
+    - Interpreta los resultados en relación con el **tiempo esperado antes del mantenimiento** y la **variabilidad en los tiempos**.
 
-</br>
+ b. Gráfico de la curva de densidad
 
-b. Genere una función que permita: 
-* Obtener una muestra aleatoria de la población y 
-* Calcule el estimador de la proporción muestral $\widehat{p}$ para un tamaño de muestra dado $n$. 
+    - Grafica la **función de densidad** de la distribución Gamma que describe la población.  
+    - Explica cómo los parámetros \( \alpha \) (forma) y \( \beta \) (escala) **afectan la forma de la curva**.  
+    - Interpreta el modelo en relación con el **mantenimiento predictivo** y la **probabilidad de fallos prematuros o tardíos**.
 
-</br>
+ c. Comparación de parámetros, estimadores y estimaciones
 
-c. Repita el escenario anterior (b) $n=500$ veces y analice los resultados en cuanto al comportamiento de los $500$ resultados del estimador $\widehat{p}$. ¿Qué tan simétricos o sesgados son los resultados obtenidos? y ¿qué se puede observar en cuanto a la variabilidad?. Realice en su informe un comentario sobre los resultados obtenidos.
+    - Toma **10 muestras aleatorias** de tamaño \( n = 200 \) de la población. Para cada muestra:
+      - **Elabora un histograma** e interpreta la distribución de los datos.
+      - **Calcula la media y varianza muestral** y compara con los valores poblacionales.
+      - Analiza los siguientes conceptos:
+        - **Parámetros**: Identifica los **valores poblacionales** reales.
+        - **Estimadores**: Define las **fórmulas utilizadas** para estimar los parámetros.
+        - **Estimaciones**: Interpreta los **valores obtenidos** y su relación con las muestras.
 
-</br>
+ d. Aplicación del Teorema del Límite Central para \( n = 200 \)
 
-d. Repita los puntos  b y c para tamaños de muestra $n=5$, $10$, $15$, $20$, $30$, $50$, $60$, $100$, $200$, $500$. Compare los resultados obtenidos para los diferentes tamaños de muestra en cuanto a la normalidad. Utilice pruebas de bondad y ajuste (shapiro wilks :`shspiro.test()`) y métodos gráficos (gráfico de normalidad: `qqnorm()`). Comente en su informe los resultados obtenidos
+    - Genera **100 muestras de tamaño \( n = 200 \)** de la población Gamma.  
+    - **Calcula la media muestral** de cada muestra y elabora un **histograma de las 100 medias muestrales**.
+    - Obtén el **promedio** y la **varianza** de estas 100 medias muestrales.
+    - **Aplica un test de normalidad** (\( \alpha = 0.05 \)) a las **100 medias muestrales** e interpreta los resultados.
+    - Explica cómo se **evidencia el Teorema del Límite Central** en el comportamiento de las medias muestrales, considerando:
+      - **Distribución de las medias muestrales**.
+      - **Comparación de la media y varianza muestral con las esperadas**.
 
-</br>
+ e. Aplicación del Teorema del Límite Central variando \( n \)
 
-e. Repita toda la simulación (puntos a – d), pero ahora para lotes con 10% de plantas enfermas y de nuevo para lotes con un 90% de plantas enfermas. Concluya sobre los resultados del ejercicio.
+    - Repite el análisis anterior **extrayendo 100 muestras** de los siguientes tamaños:  
+  \( n = 5, 10, 80, 200, 500, 2000 \).  
+     - Para cada tamaño de muestra \( n \):
+        - **Calcula el promedio y la varianza** de las 100 medias muestrales.
+        - **Elabora un histograma** de las 100 medias muestrales.
+        - **Aplica un test de normalidad** (\( \alpha = 0.05 \)) y discute los resultados.
+    - Concluye sobre la relación entre el **tamaño muestral** y la **validez del Teorema del Límite Central**, analizando:
+        - **Comportamiento de la distribución de las medias muestrales**.
+        - **Convergencia de la media y varianza muestral hacia los valores teóricos**.
 
-</br>
+
+</br></br>
 
 <div class="content-box-gray">
-### <span style="color:#686868">**Nota**</span>
+### <span style="color:#686868">**Condiciones de entrega**</span>
 
-* funciones recomendadas : `rbinom()` , `data.frame()`,   `sapply()`
+- La solución se debe presentar en un archivo HTML generado mediante RMarkdown (.Rmd).
+- Responde a los ejercicios en orden (de la **a** hasta la **e**).
+- Por cada ejercicio, incluye:
 
-**Entregable** : enlace en **RPubs** con informe 3
+  1. **Código R:** Con comentarios explicativos.
+  2. **Gráficos y cálculos:** Según lo solicitado.
+  3. **Interpretación:** Explicación clara de los resultados obtenidos.
+  
+- El archivo `.Rmd` y el HTML generado deben entregarse juntos.
+- Establece la semilla con tu código de estudiante: `set.seed(codigo)`.
+- Asegúrate de que todos los códigos compilen correctamente antes de la entrega.
 </div>
+
 
 </br></br></br>
 
@@ -179,43 +266,57 @@ e. Repita toda la simulación (puntos a – d), pero ahora para lotes con 10% de
 
 <br/>
 
-## <span style="color:#FF7F00">**Estimacción boostrap**</span> 
+## <span style="color:#FF7F00">**Estimación de Intervalos de Confianza mediante Bootstrap**</span> 
 
 </br>
+Una empresa dedicada a la generación de energía renovable desea evaluar el rendimiento de sus 20 generadores eléctricos portátiles, alimentados con biocombustible. Estos generadores se utilizan en proyectos remotos, donde la eficiencia energética es crucial para minimizar costos y reducir la huella ambiental. Para el estudio, se mide la eficiencia energética de cada generador, expresada en kilovatios-hora por litro de combustible (kWh/L). Los resultados son:
 
+```{r}
+# Muestra de eficiencia energética (kWh/L)
+muestra <- c(6.12, 5.87, 5.45, 6.33, 5.71, 6.04, 5.92, 5.65, 6.18, 
+             5.78, 5.95, 6.21, 5.63, 5.79, 6.11, 5.88, 6.02, 5.76, 5.85, 6.10)
+```
 
-Cuando se extrae una muestra de una población que no es normal y se requiere estimar un intervalo de confianza se pueden utilizar los métodos de estimación **bootstrap**. Esta metodología supone que se puede reconstruir la población objeto de estudio mediante un muestreo con reemplazo de la muestra que se tiene.  Existen varias versiones del método. Una presentación básica del método se describe a continuación:
+El objetivo es estimar un intervalo de confianza al 95% para la eficiencia media.
 
-<br/>
+Realiza las siguientes actividades:
 
-El artículo de In-use Emissions from Heavy Duty Dissel Vehicles (J.Yanowitz, 2001) presenta las mediciones de eficiencia de combustible en millas/galón de una muestra de siete camiones. Los datos obtenidos son los siguientes: 7.69, 4.97, 4.56, 6.49, 4.34, 6.24 y 4.45. Se supone que es una muestra aleatoria de camiones y que se desea construir un intervalo de confianza del 95 % para la media  de la eficiencia de combustible de esta población. No se tiene información de la distribución de los datos. El método bootstrap permite construir intervalos de confianza del 95 % - Para ilustrar el método suponga que coloca los valores de la muestra en una caja y extrae uno al azar. Este correspondería al primer valor de la muestra bootstrap $X^{∗}_{1}$. Después de anotado el valor se regresa $X^{∗}_{1}$  a la caja y se extrae el valor $X^{∗}_{2}$ , regresandolo nuevamente. Este procedimiento se repite hasta completar una muestra de tamaño $n$, $X^{∗}_{1}$,$X^{∗}_{2}$,$X^{∗}_{2}$,\cdot $X^{∗}_{n}$, conformando la muestra bootstrap.
+ a. Normalidad:
+    
+    - Elabora un histograma y una curva de densidad de la muestra. ¿Podría considerarse normal la población de origen de la muestra?
+    - Aplica las pruebas Shapiro-Wilk y Kolmogorov-Smirnov para evaluar la normalidad. Expón claramente las hipótesis nula y alternativa. Determina el nivel de significancia adecuado. Argumenta el valor del nivel de significancia que uses.  
+    - Comenta si los resultados sugieren la viabilidad de usar métodos paramétricos para calcular intervalos de confianza. 
 
-Es necesario extraer un gran número de muestras (suponga k = 1000). Para cada una de las muestra bootstrap obtenidas se calcula la media $\bar{X^{∗}_{i}}$, obteniéndose un valor para cada muestra. El intervalo de confianza queda conformado por los percentiles $P_{2.5}$ y $P_{97.5}$. Existen dos métodos para estimarlo:
+b. Procedimiento Bootstrap:
+
+   - Calcula la media de la muestra original ($\bar{X}$). 
+   - Genera 1000 muestras bootstrap de tamaño $n = 20$ mediante muestreo con reemplazo.
+   - Calcula la media muestral para cada muestra bootstrap.
+   - Obtén los percentiles 2.5 y 97.5 de las medias muestrales bootstrap.
+   - Calcula  2 tipos de intervalos de confianza para la media mediante Bootstrap.
+   - Compara ambos intervalos: ¿Son similares o presentan diferencias significativas?
+    
+ c. Método Paramétrico:   
+  
+    - Si se cumplen las condiciones para su aplicación, calcula un intervalo de confianza paramétrico.
+    - Compara este intervalo con los obtenidos mediante métodos no paramétricos.
+    
 
 <br/><br/>
-
-|        |                                              |
-|:-------|:--------------------------------------------:|
-|Método 1| $(P_{2.5}; P_{97.5})$                        |
-|Método 2| $(2\bar{X} − P_{97.5}; 2\bar{X} − P_{2.5})$  |
-|        |                                              |
-
-<br/>
-
-Construya el intervalo de confianza por los dos métodos y compare los resultados obtenidos. Comente los resultados. Confiaría en estas estimaciones?
-
-<br/>
-<br/>
 <div class="content-box-gray">
-### <span style="color:#686868">**Nota**</span>
+### <span style="color:#686868">**Condiciones de entrega**</span>
 
-* las muestras bootstrap se pueden obtener a partir de muestreo aleatorio con repetición (o también llamado con sustitución)
+- La solución se debe presentar en un archivo HTML generado mediante RMarkdown (.Rmd).
+- Responde a los ejercicios en orden (de la **a** hasta la **c**).
+- Por cada ejercicio, incluye:
 
-* **Entregable** : enlace en **RPubs** con informe 4
-
-* funciones recomendadas : `sample()` , `apply()`, `quantile()`
-
-Problema tomado de Navidi(2006) 
+  1. **Código R:** Con comentarios explicativos.
+  2. **Gráficos y cálculos:** Según lo solicitado.
+  3. **Interpretación:** Explicación clara de los resultados obtenidos.
+  
+- El archivo `.Rmd` y el HTML generado deben entregarse juntos.
+- Establece la semilla con tu código de estudiante: `set.seed(codigo)`.
+- Asegúrate de que todos los códigos compilen correctamente antes de la entrega.
 </div>
 
 
@@ -226,265 +327,301 @@ Problema tomado de Navidi(2006)
 
 <br/>
 
-## <span style="color:#FF7F00">**Relaciones entre la potencia, el tamaño de los efectos y el tamaño de la muestra**</span> 
+## <span style="color:#FF7F00">**Análisis de Potencia, Tamaño del Efecto y Errores Tipo I y II en una Prueba de Hipótesis para una Sola Población**</span> 
+
+Esta actividad propone explorar la relación entre el tamaño muestral, el tamaño del efecto y la potencia estadística mediante simulaciones. Se analizarán diferentes escenarios usando pruebas t para una muestra y se interpretarán los resultados obtenidos.
 
 </br>
+Se parte de una simulación de la presión arterial de 500 individuos, generada con una distribución normal de media 120 mmHg y desviación estándar de 15 mmHg. El laboratorio busca determinar si la presión arterial media poblacional difiere significativamente de 120 mmHg mediante una **prueba t para una muestra**.
 
-El "efecto del tamaño" (o "tamaño del efecto", en inglés "effect size") en el contexto de la prueba de hipótesis se refiere a la magnitud de la diferencia o la fuerza de la relación que se está investigando entre las variables. En otras palabras, mide la cantidad de cambio o la importancia práctica de los resultados, más allá de simplemente determinar si una diferencia es estadísticamente significativa. El tamaño del efecto es crucial porque, incluso si una prueba estadística muestra que un resultado es significativo (es decir, rechazas la hipótesis nula), el tamaño del efecto te dice si esa diferencia es realmente importante en un sentido práctico o clínico. Por ejemplo, un estudio podría encontrar que un nuevo medicamento reduce la presión arterial de manera estadísticamente significativa, pero el tamaño del efecto te indicaría si la reducción es lo suficientemente grande como para tener relevancia clínica. En resumen, el tamaño del efecto proporciona una medida complementaria a la significancia estadística, ayudando a interpretar el verdadero impacto o importancia de los resultados encontrados.
+Información para realizar la simulación:
 
-</br>
-
-En este problema, nos centraremos en una aplicación que requiere la aplicación de la prueba t de Student para comparar las medias entre dos grupos. En este contexto evaluaremos cómo el efecto de los tamaños o las diferencias en los tamaños muestrales de los grupos influyen en la potencia de la prueba. De manera formal, la potencia se define como la probabilidad de rechazar la hipótesis nula cuando la hipótesis alternativa es verdadera. De forma más coloquial, la potencia es la capacidad de una prueba estadística para identificar un efecto si este realmente existe. En general, desequilibrios muy marcados en los tamaños de muestra tienden a reducir la potencia estadística, incluso cuando se asocian con tamaños de efecto considerables, lo que aumenta la probabilidad de cometer un error de tipo II. Para fundamentar esta afirmación, debes analizar diferentes resultados computacionales que se presentan a continuación.
-
-</br></br>
-
-
-### <span style="color:#FF7F00">**Caso 1: Variando los tamaños de los efectos (d)**</span>
-
-En los códigos del archivo llamado **caso1.R**, para cada tamaño fijo de los efectos $d$, se modela la relación entre el tamaño muestral y la potencia (manteniendo constante el nivel de significancia $\alpha=0.05$). En las figuras se visualizan los resultados para tamaño de efecto muy pequeño ($d=0.1$), pequeño ($d=0.2$), mediano ($d=0.5$) y grande ($d=0.8$). Repite el análisis usando 5 valores distintos del nivel de significancia.  ¿Cambian los resultados? ¿Qué ocurre cuando el tamaño de muestra de los grupos que se comparan es de $20$, $60$, $100$ y $140$? Analiza y compara los resultados.
-
-</br></br>
-
-### <span style="color:#FF7F00">**Caso 2: Variando los tamaños muestrales**</span>
-
-En los códigos del archivo llamado **caso2.R**, se modela la relación entre el tamaño del efecto $d$ y la potencia (manteniendo constante el nivel de significancia $\alpha=0.05$). Para ello, se considera los siguientes tamaños de muestra, donde $n_1$ es el número de sujetos en el grupo 1 y $n_2$ es el número de sujetos en el grupo 2:
-    
-* $n_1=28$, $n_2=1406$ : $n_1$ representa el $2$ % del tamaño total de la muestra de $1434$.
-* $n_1=144$, $n_2=1290$ : $n_1$ representa el $10$ % del tamaño total de la muestra de $1434$.
-* $_n1=287$, $n_2=1147$ : $n_1$ representa el $20$ % del tamaño total de la muestra de $1434$.
-* $n_1=430$, $n_2=1004$ : $n_1$ representa el $30$ % del tamaño total de la muestra de $1434$.
-* $n_1=574$, $n_2=860$  : $n_1$ representa el $40$ % del tamaño total de la muestra de $1434$.
-* $n_1=717$, $n_2=717$ : grupos de igual tamaño (esto es óptimo porque conduce a la potencia más alta para un tamaño de efecto dado).
-
-En la figura resultante, se trazaron las curvas de potencia para la prueba t de Student, en función del tamaño del efecto, asumiendo una tasa de error Tipo I del $5$ %. La comparación de diferentes curvas de potencia (basadas en el tamaño de la muestra de cada grupo) en el mismo gráfico es una representación visual útil de este análisis. En la figura también se trazó una línea discontinua horizontal en un nivel de potencia aceptable del 80% y una línea vertical en el tamaño del efecto que tendría que estar presente en nuestros datos para alcanzar el 80 % de potencia. Se observa que el tamaño del efecto debe ser superior a 0.54 para alcanzar un nivel de potencia aceptable dados tamaños de grupo altamente desequilibrados de $n_1=28$ y $n_2=1406$, en comparación con todos los demás escenarios que conducen al 100% de potencia. Repite el análisis usando $5$ valores distintos del nivel de significancia.  ¿Cambian los resultados? ¿Qué ocurre cuando $n_1=28$ y $n_2=1406$?  Analiza y compara los resultados.
-
-</br></br>
-
-### **Referencia**: 
-
-* Teoría de Probabilidad y Estadística Matemática,  Dr. rer. nat. Humberto LLinás Solano,
-Departamento de Matemáticas y Estadística, Universidad del Norte (Barranquilla, Colombia)
+- Distribución de los datos simulados: $X \sim N(120, 15)$
+- Tamaño muestral: Variable según el caso.
+- Semilla: `set.seed(123)`.
 
 
-</br></br>
+**Caso 1: Variación del Tamaño del Efecto**
 
-#### <span style="color:#696969">**Código caso1.R**</span>
+Analiza la potencia manteniendo $\alpha = 0.001$ y variando el tamaño muestral y el tamaño del efecto:
 
-```{r, eval=FALSE}
+- Tamaños muestrales: $n = 20, 30, 40, 50, 60, 70, 80, 90, 100, 200, 300, 400, 500, 600, 700, 800$.
+- Tamaños del efecto: $d = 0.2$ (pequeño), $d = 0.5$ (mediano), $d = 0.8$ (grande).
+- Simulaciones: 1000 repeticiones.
 
-#Gráfica 1
+Construye un gráfico:
 
-#Se necesita el paquete pwr 
-if(!require(pwr)){install.packages("pwr");library("pwr")}
+- Eje X: Tamaño muestral.
+- Eje Y: Potencia.
+- Curvas: Una para cada tamaño del efecto.
+- Visualización: Usa `power.t.test` y `ggplot2`.
 
-# t-TEST
-# Se aplicará power.t.test del paquete stats (ya en R). Calcula la potencia de la prueba t de una o dos muestras, o determina los parámetros para obtener un valor particular de la potencia.
+Responde:
 
-d<-seq(.1,2,by=.1) # 20 tamaños de los efectos
-n<-1:150 # Tamaños muestrales
+a. ¿Con qué tamaño muestral se alcanza el 80 \% de potencia para un efecto grande ($d=0.8$)?
+b. ¿Cuántas observaciones se necesitan para detectar un efecto mediano ($d=0.5$) con una potencia adecuada?
+c. ¿Qué ocurre si se incrementa el tamaño muestral más allá de 300 observaciones para un efecto grande? ¿Es útil?
+d. Interpreta el efecto del tamaño en la potencia para cada tamaño del efecto.
 
-t.test.power.effect <-as.data.frame(do.call("cbind",lapply(1:length(d),function(i)
-{
-  sapply(1:length(n),function(j)
-  {
-    power.t.test(n=n[j],d=d[i],sig.level=0.05,power=NULL,type= "two.sample")$power
-  })
-})))
+**Caso 2: Variación del Tamaño de Muestra**
 
-# Si algunas potencias no se pueden calcular, se ajustan a cero:
-t.test.power.effect[is.na(t.test.power.effect)] <- 0 
-colnames(t.test.power.effect)<-paste (d,"effect size")
+Analiza la potencia manteniendo $\alpha = 0.05$ y variando el tamaño muestral y el tamaño del efecto:
 
-#Graficando los resultados
-
-prueba <-t.test.power.effect #data frame de 150 X 20 (para graficar)
-cuts_num<-c(2,5,8) # cortes
-
-#Cortes basados en: Cohen, J. (1988). Statistical Power Analysis for the Behavioral Sciences (2nd ed.). Hillsdale, NJ: Lawrence Erlbaum Associates, Publishers.
-cuts_cat<-c("pequeño","medio","grande") 
-
-columnas <- 1:ncol(prueba) #Lista de los valores 1:20
-color_linea<-rainbow(length(columnas), alpha=.5) # Lista de 20 colores
-grosor_linea=3 # Grosor de la línea
-
-#Para el tipo de línea: (“blank”, “solid”, “dashed”, “dotted”, “dotdash”, “longdash”, “twodash”) ó  (0, 1, 2, 3, 4, 5, 6). 
-#Note que lty = “solid” is idéntica a lty=1.
-
-tipo_linea <- rep(1,length(color_linea))        #Repetir length(color)=20 veces el 1
-tipo_linea[cuts_num]<-c(2:(length(cuts_num)+1)) #Asignar 2, 3, 4 en las posiciones 2, 5, 8 de tipo_linea
-
-#Resaltar posiciones importantes
-cuts_num<-c(2,5,8) # Cortes
-
-#Cortes basados en: Cohen, J. (1988). Statistical Power Analysis for the Behavioral Sciences (2nd ed.). Hillsdale, NJ: Lawrence Erlbaum Associates, Publishers.
-cuts_cat<-c("pequeño","medio","grande") 
-color_linea[cuts_num]<-c("black")
-
-efecto <- d # Listado de los 20 valores de 20
-efecto[cuts_num] <- cuts_cat  #Reemplazar en "efecto" las posiciones cuts_num (2, 5, 8) por las categorías de cuts_cat
-
-par(fig=c(0,.8,0,1),new=TRUE)
-
-#Gráfica
-plot(1, type="n", #no produce puntos ni líneas
-     frame.plot=FALSE, 
-     xlab="Tamaño muestral", ylab="Potencia", 
-     xlim=c(1,150),  ylim=c(0,1), 
-     main="t-Test", axes = FALSE)
-
-#Editando los ejes, grid, etc.
-abline(v=seq(0,150,by=10), col = "lightgray", lty = "dotted") # Grid vertical
-abline(h=seq(0,1,by=.05), col = "lightgray", lty = "dotted")  # Grid horizontal
-axis(1,seq(0,150,by=10)) # Números en eje X
-axis(2,seq(0,1,by=.05))  # Números en eje Y
-
-#Plot de las lineas 
-#columnas <- 1:ncol(prueba) # lista de los valores 1:20
-for(i in 1:length(columnas)) #length(columnas)=20
-{
-  lines(1:150,
-        #prueba (data frame de 150 X 20, para graficar)
-        #columna <- 1:ncol(prueba) listado de valores 1:20 
-        prueba[,columnas[i]], #filtrar "prueba" para valor de columna
-        col=color_linea[i],   #color_linea[cuts_num]<-c("black")
-        lwd=grosor_linea,     #grosor de cada linea
-        lty=tipo_linea[i]     #tipo_linea[cuts_num]<-c(2:(length(cuts_num)+1))
-  )
-}
-
-#Leyendas
-par(fig=c(.65,1,0,1),new=TRUE)
-plot.new()
-legend("top",legend=efecto, col=color_linea, lwd=3, lty=tipo_linea, title="Tamaño efecto", 
-       bty="n" #Opciones: o (complete box), n (no box), 7, L, C, U
-)
-
-#Gráfica 2
-
-#plot using ggplot2
-
-#library(ggplot2)
-#library(reshape)
-#library(plotly)
-
-obj <- cbind(size=1:150, prueba) #Agregando el tamaño al data frame "prueba" 
-
-# Usar melt y unir con "effect" para el mapeo
-#El data frame "obj" se reconstruye con respecto al parámetro id="size". 
-melted <- cbind(reshape::melt(obj, id="size"), effect=rep(d,each=150)) 
-
-p<- ggplot(data=melted, aes(x=size, y=value, color=as.factor(effect))) + 
-  geom_line(size=0.7,alpha=.5) +
-  ylab("Potencia") + 
-  xlab("Tamaño muestral") + 
-  ggtitle("t-Test")+
-  theme_bw() +
-  #guides(fill=guide_legend(title="Efecto"))
-  #scale_fill_discrete(name = "Efecto")
-  #labs(fill='Efecto') 
-  #scale_fill_manual("Efecto"#,values=c("orange","red")
-  scale_color_discrete(name = "Tamaño del efecto")    
-
-# Interactive plot
-plotly::ggplotly(p)
+- Tamaños muestrales: $n = 20, 30, 40, 50, 60, 70, 80, 90, 100, 200, 300, 400, 500, 600, 700, 800$.
+- Tamaños del efecto: $d = 0.2$ (pequeño), $d = 0.5$ (mediano), $d = 0.8$ (grande).
+- Simulaciones: 1000 repeticiones.
 
 
+Construye gráficos:
 
-```
+- Eje X: Tamaño del efecto.
+- Eje Y: Potencia.
+- Curvas: Una para cada tamaño de muestra.
+- Visualización: Usa `power.t.test` y `ggplot2`.
 
-</br></br>
+Responde:
 
-#### <span style="color:#696969">**Código caso2.R**</span>
+e. ¿Cómo afecta el tamaño del efecto a la potencia estadística?
+f. ¿Cómo influye el tamaño muestral en la potencia estadística?
+g. ¿En qué punto aumentar el tamaño muestral deja de proporcionar beneficios significativos en la potencia?
+h. Repite el análisis  para $\alpha = 0.01$ y $\alpha = 0.10$ y compara los tres resultados. ¿Cuál sería más adecuado en un contexto médico y por qué?
 
-```{r, eval=FALSE}
-#library(dplyr)    
-#library(tidyr)    #Para manipulación de datos: separate, gather, spread
-#library(ggplot2)  
-#library(plotly)   #Para curvas de potencias interactivas
-#library(pwr)      #Para cálculo de las potencias
 
-#Generar cálculos de las potencias con la funcion pwr.t2n.test.
-#Es un t-test para 2 muestras con tamaños diferentes 
-#Aquí: d es el tamaño del efecto, Power= potencia de la prueba= 1-beta): 
+</br></br></br>
 
-#pwr.t2n.test(n1 = NULL, n2= NULL, d = NULL, sig.level = 0.05, power = NULL,  alternative = c("two.sided",  "less","greater"))
+<div class="content-box-gray">
+### <span style="color:#686868">**Condiciones de entrega**</span>
 
-ptab <- cbind(NULL, NULL)       
+- La solución se debe presentar en un archivo HTML generado mediante RMarkdown (.Rmd).
+- Responde a los ejercicios en orden (de la **a** hasta la **h**).
+- Por cada ejercicio, incluye:
 
-for (i in seq(0,1, length.out = 200)){
-  pwrt1 <- pwr.t2n.test(n1 = 28, n2 = 1406, 
-                        sig.level = 0.05, power = NULL, 
-                        d = i, alternative="two.sided")
-  pwrt2 <- pwr.t2n.test(n1 = 144, n2 = 1290, 
-                        sig.level = 0.05, power = NULL, 
-                        d = i, alternative="two.sided")
-  pwrt3 <- pwr.t2n.test(n1 = 287, n2 = 1147, 
-                        sig.level = 0.05, power = NULL, 
-                        d = i, alternative="two.sided")
-  pwrt4 <- pwr.t2n.test(n1 = 430, n2 = 1004, 
-                        sig.level = 0.05, power = NULL, 
-                        d = i, alternative="two.sided")
-  pwrt5 <- pwr.t2n.test(n1 = 574, n2 = 860, 
-                        sig.level = 0.05, power = NULL, 
-                        d = i, alternative="two.sided")
-  pwrt6 <- pwr.t2n.test(n1 = 717, n2 = 717, 
-                        sig.level = 0.05, power = NULL, 
-                        d = i, alternative="two.sided")
+  1. **Código R:** Con comentarios explicativos.
+  2. **Gráficos y cálculos:** Según lo solicitado.
+  3. **Interpretación:** Explicación clara de los resultados obtenidos.
   
-  #Es un data frame de tamaño 200 por 12: 
-  ptab <- rbind(ptab, cbind(pwrt1$d, pwrt1$power,
-                            pwrt2$d, pwrt2$power,
-                            pwrt3$d, pwrt3$power,
-                            pwrt4$d, pwrt4$power,
-                            pwrt5$d, pwrt5$power,
-                            pwrt6$d, pwrt6$power))
-}
+- El archivo `.Rmd` y el HTML generado deben entregarse juntos.
+- Establece la semilla con tu código de estudiante: `set.seed(codigo)`.
+- Asegúrate de que todos los códigos compilen correctamente antes de la entrega.
+</div>
+
+<!-- #### <span style="color:#696969">**Código caso1.R**</span> -->
+
+<!-- ```{r, eval=FALSE} -->
+
+<!-- #Gráfica 1 -->
+
+<!-- #Se necesita el paquete pwr  -->
+<!-- if(!require(pwr)){install.packages("pwr");library("pwr")} -->
+
+<!-- # t-TEST -->
+<!-- # Se aplicará power.t.test del paquete stats (ya en R). Calcula la potencia de la prueba t de una o dos muestras, o determina los parámetros para obtener un valor particular de la potencia. -->
+
+<!-- d<-seq(.1,2,by=.1) # 20 tamaños de los efectos -->
+<!-- n<-1:150 # Tamaños muestrales -->
+
+<!-- t.test.power.effect <-as.data.frame(do.call("cbind",lapply(1:length(d),function(i) -->
+<!-- { -->
+<!--   sapply(1:length(n),function(j) -->
+<!--   { -->
+<!--     power.t.test(n=n[j],d=d[i],sig.level=0.05,power=NULL,type= "two.sample")$power -->
+<!--   }) -->
+<!-- }))) -->
+
+<!-- # Si algunas potencias no se pueden calcular, se ajustan a cero: -->
+<!-- t.test.power.effect[is.na(t.test.power.effect)] <- 0  -->
+<!-- colnames(t.test.power.effect)<-paste (d,"effect size") -->
+
+<!-- #Graficando los resultados -->
+
+<!-- prueba <-t.test.power.effect #data frame de 150 X 20 (para graficar) -->
+<!-- cuts_num<-c(2,5,8) # cortes -->
+
+<!-- #Cortes basados en: Cohen, J. (1988). Statistical Power Analysis for the Behavioral Sciences (2nd ed.). Hillsdale, NJ: Lawrence Erlbaum Associates, Publishers. -->
+<!-- cuts_cat<-c("pequeño","medio","grande")  -->
+
+<!-- columnas <- 1:ncol(prueba) #Lista de los valores 1:20 -->
+<!-- color_linea<-rainbow(length(columnas), alpha=.5) # Lista de 20 colores -->
+<!-- grosor_linea=3 # Grosor de la línea -->
+
+<!-- #Para el tipo de línea: (“blank”, “solid”, “dashed”, “dotted”, “dotdash”, “longdash”, “twodash”) ó  (0, 1, 2, 3, 4, 5, 6).  -->
+<!-- #Note que lty = “solid” is idéntica a lty=1. -->
+
+<!-- tipo_linea <- rep(1,length(color_linea))        #Repetir length(color)=20 veces el 1 -->
+<!-- tipo_linea[cuts_num]<-c(2:(length(cuts_num)+1)) #Asignar 2, 3, 4 en las posiciones 2, 5, 8 de tipo_linea -->
+
+<!-- #Resaltar posiciones importantes -->
+<!-- cuts_num<-c(2,5,8) # Cortes -->
+
+<!-- #Cortes basados en: Cohen, J. (1988). Statistical Power Analysis for the Behavioral Sciences (2nd ed.). Hillsdale, NJ: Lawrence Erlbaum Associates, Publishers. -->
+<!-- cuts_cat<-c("pequeño","medio","grande")  -->
+<!-- color_linea[cuts_num]<-c("black") -->
+
+<!-- efecto <- d # Listado de los 20 valores de 20 -->
+<!-- efecto[cuts_num] <- cuts_cat  #Reemplazar en "efecto" las posiciones cuts_num (2, 5, 8) por las categorías de cuts_cat -->
+
+<!-- par(fig=c(0,.8,0,1),new=TRUE) -->
+
+<!-- #Gráfica -->
+<!-- plot(1, type="n", #no produce puntos ni líneas -->
+<!--      frame.plot=FALSE,  -->
+<!--      xlab="Tamaño muestral", ylab="Potencia",  -->
+<!--      xlim=c(1,150),  ylim=c(0,1),  -->
+<!--      main="t-Test", axes = FALSE) -->
+
+<!-- #Editando los ejes, grid, etc. -->
+<!-- abline(v=seq(0,150,by=10), col = "lightgray", lty = "dotted") # Grid vertical -->
+<!-- abline(h=seq(0,1,by=.05), col = "lightgray", lty = "dotted")  # Grid horizontal -->
+<!-- axis(1,seq(0,150,by=10)) # Números en eje X -->
+<!-- axis(2,seq(0,1,by=.05))  # Números en eje Y -->
+
+<!-- #Plot de las lineas  -->
+<!-- #columnas <- 1:ncol(prueba) # lista de los valores 1:20 -->
+<!-- for(i in 1:length(columnas)) #length(columnas)=20 -->
+<!-- { -->
+<!--   lines(1:150, -->
+<!--         #prueba (data frame de 150 X 20, para graficar) -->
+<!--         #columna <- 1:ncol(prueba) listado de valores 1:20  -->
+<!--         prueba[,columnas[i]], #filtrar "prueba" para valor de columna -->
+<!--         col=color_linea[i],   #color_linea[cuts_num]<-c("black") -->
+<!--         lwd=grosor_linea,     #grosor de cada linea -->
+<!--         lty=tipo_linea[i]     #tipo_linea[cuts_num]<-c(2:(length(cuts_num)+1)) -->
+<!--   ) -->
+<!-- } -->
+
+<!-- #Leyendas -->
+<!-- par(fig=c(.65,1,0,1),new=TRUE) -->
+<!-- plot.new() -->
+<!-- legend("top",legend=efecto, col=color_linea, lwd=3, lty=tipo_linea, title="Tamaño efecto",  -->
+<!--        bty="n" #Opciones: o (complete box), n (no box), 7, L, C, U -->
+<!-- ) -->
+
+<!-- #Gráfica 2 -->
+
+<!-- #plot using ggplot2 -->
+
+<!-- #library(ggplot2) -->
+<!-- #library(reshape) -->
+<!-- #library(plotly) -->
+
+<!-- obj <- cbind(size=1:150, prueba) #Agregando el tamaño al data frame "prueba"  -->
+
+<!-- # Usar melt y unir con "effect" para el mapeo -->
+<!-- #El data frame "obj" se reconstruye con respecto al parámetro id="size".  -->
+<!-- melted <- cbind(reshape::melt(obj, id="size"), effect=rep(d,each=150))  -->
+
+<!-- p<- ggplot(data=melted, aes(x=size, y=value, color=as.factor(effect))) +  -->
+<!--   geom_line(size=0.7,alpha=.5) + -->
+<!--   ylab("Potencia") +  -->
+<!--   xlab("Tamaño muestral") +  -->
+<!--   ggtitle("t-Test")+ -->
+<!--   theme_bw() + -->
+<!--   #guides(fill=guide_legend(title="Efecto")) -->
+<!--   #scale_fill_discrete(name = "Efecto") -->
+<!--   #labs(fill='Efecto')  -->
+<!--   #scale_fill_manual("Efecto"#,values=c("orange","red") -->
+<!--   scale_color_discrete(name = "Tamaño del efecto")     -->
+
+<!-- # Interactive plot -->
+<!-- plotly::ggplotly(p) -->
 
 
-#Es un data frame de tamaño 200 por 13 (la 1ra columna es ID)
-ptab <- cbind(seq_len(nrow(ptab)), ptab)
 
-colnames(ptab) <- c("id","n1=28, n2=1406;effect size","n1=28, n2=1406;power",
-                    "n1=144, n2=1290;effect size","n1=144, n2=1290;power",
-                    "n1=287, n2=1147;effect size","n1=287, n2=1147;power",
-                    "n1=430, n2=1004;effect size","n1=430, n2=1004;power",
-                    "n1=574, n2=860;effect size","n1=574, n2=860;power",
-                    "n1=717, n2=717;effect size","n1=717, n2=717;power")
+<!-- ``` -->
 
-#gather se usa  para "reunir" un par key-value. En este caso, en 3 columnas: ID, variables y respuestas numericas
-temp1 <- ptab %>% as.data.frame() %>%   gather(key = name, value = val, 2:13)
+<!-- </br></br> -->
 
-#Separar celdas en columnas, de acuerdo a una condición (sep=). En este caso, se separó "name" en dos columnas: samples y pruebas 
-temp2 <- temp1 %>%   separate(col = name, into = c("samples", "pruebas"), sep = ";")
+<!-- #### <span style="color:#696969">**Código caso2.R**</span> -->
+
+<!-- ```{r, eval=FALSE} -->
+<!-- #library(dplyr)     -->
+<!-- #library(tidyr)    #Para manipulación de datos: separate, gather, spread -->
+<!-- #library(ggplot2)   -->
+<!-- #library(plotly)   #Para curvas de potencias interactivas -->
+<!-- #library(pwr)      #Para cálculo de las potencias -->
+
+<!-- #Generar cálculos de las potencias con la funcion pwr.t2n.test. -->
+<!-- #Es un t-test para 2 muestras con tamaños diferentes  -->
+<!-- #Aquí: d es el tamaño del efecto, Power= potencia de la prueba= 1-beta):  -->
+
+<!-- #pwr.t2n.test(n1 = NULL, n2= NULL, d = NULL, sig.level = 0.05, power = NULL,  alternative = c("two.sided",  "less","greater")) -->
+
+<!-- ptab <- cbind(NULL, NULL)        -->
+
+<!-- for (i in seq(0,1, length.out = 200)){ -->
+<!--   pwrt1 <- pwr.t2n.test(n1 = 28, n2 = 1406,  -->
+<!--                         sig.level = 0.05, power = NULL,  -->
+<!--                         d = i, alternative="two.sided") -->
+<!--   pwrt2 <- pwr.t2n.test(n1 = 144, n2 = 1290,  -->
+<!--                         sig.level = 0.05, power = NULL,  -->
+<!--                         d = i, alternative="two.sided") -->
+<!--   pwrt3 <- pwr.t2n.test(n1 = 287, n2 = 1147,  -->
+<!--                         sig.level = 0.05, power = NULL,  -->
+<!--                         d = i, alternative="two.sided") -->
+<!--   pwrt4 <- pwr.t2n.test(n1 = 430, n2 = 1004,  -->
+<!--                         sig.level = 0.05, power = NULL,  -->
+<!--                         d = i, alternative="two.sided") -->
+<!--   pwrt5 <- pwr.t2n.test(n1 = 574, n2 = 860,  -->
+<!--                         sig.level = 0.05, power = NULL,  -->
+<!--                         d = i, alternative="two.sided") -->
+<!--   pwrt6 <- pwr.t2n.test(n1 = 717, n2 = 717,  -->
+<!--                         sig.level = 0.05, power = NULL,  -->
+<!--                         d = i, alternative="two.sided") -->
+
+<!--   #Es un data frame de tamaño 200 por 12:  -->
+<!--   ptab <- rbind(ptab, cbind(pwrt1$d, pwrt1$power, -->
+<!--                             pwrt2$d, pwrt2$power, -->
+<!--                             pwrt3$d, pwrt3$power, -->
+<!--                             pwrt4$d, pwrt4$power, -->
+<!--                             pwrt5$d, pwrt5$power, -->
+<!--                             pwrt6$d, pwrt6$power)) -->
+<!-- } -->
 
 
-#La función spread hace lo opuesto a gather. Son funciones complementarias. 
-#Es decir, si al resultado de aplicar la función spread le aplicamos la función gather llegamos al dataset original.
-temp3 <- temp2 %>%   spread(key = pruebas, value = val)
+<!-- #Es un data frame de tamaño 200 por 13 (la 1ra columna es ID) -->
+<!-- ptab <- cbind(seq_len(nrow(ptab)), ptab) -->
 
-#Convertir la variable "samples" a factor.
-temp3$samples <- factor(temp3$samples, 
-                        levels = c("n1=28, n2=1406", "n1=144, n2=1290", 
-                                   "n1=287, n2=1147", "n1=430, n2=1004",
-                                   "n1=574, n2=860", "n1=717, n2=717")
-)
+<!-- colnames(ptab) <- c("id","n1=28, n2=1406;effect size","n1=28, n2=1406;power", -->
+<!--                     "n1=144, n2=1290;effect size","n1=144, n2=1290;power", -->
+<!--                     "n1=287, n2=1147;effect size","n1=287, n2=1147;power", -->
+<!--                     "n1=430, n2=1004;effect size","n1=430, n2=1004;power", -->
+<!--                     "n1=574, n2=860;effect size","n1=574, n2=860;power", -->
+<!--                     "n1=717, n2=717;effect size","n1=717, n2=717;power") -->
 
-#Gráfica
-p<- ggplot(temp3, aes(x = `effect size`, y = power, color = samples)) +
-  geom_line(size=1) + 
-  
-  theme_bw() + 
-  theme(axis.text=element_text(size=10), 
-        axis.title=element_text(size=10), 
-        legend.text=element_text(size=10)) +
-  
-  geom_vline(xintercept = .54, linetype = 2) +
-  geom_hline(yintercept = 0.80, linetype = 2)+
-  
-  labs(x="Effect size", y="Power") +
-  scale_color_discrete(name = "Sampling size") 
+<!-- #gather se usa  para "reunir" un par key-value. En este caso, en 3 columnas: ID, variables y respuestas numericas -->
+<!-- temp1 <- ptab %>% as.data.frame() %>%   gather(key = name, value = val, 2:13) -->
 
-# so simple to make interactive plots
-plotly::ggplotly(p)
-```
+<!-- #Separar celdas en columnas, de acuerdo a una condición (sep=). En este caso, se separó "name" en dos columnas: samples y pruebas  -->
+<!-- temp2 <- temp1 %>%   separate(col = name, into = c("samples", "pruebas"), sep = ";") -->
+
+
+<!-- #La función spread hace lo opuesto a gather. Son funciones complementarias.  -->
+<!-- #Es decir, si al resultado de aplicar la función spread le aplicamos la función gather llegamos al dataset original. -->
+<!-- temp3 <- temp2 %>%   spread(key = pruebas, value = val) -->
+
+<!-- #Convertir la variable "samples" a factor. -->
+<!-- temp3$samples <- factor(temp3$samples,  -->
+<!--                         levels = c("n1=28, n2=1406", "n1=144, n2=1290",  -->
+<!--                                    "n1=287, n2=1147", "n1=430, n2=1004", -->
+<!--                                    "n1=574, n2=860", "n1=717, n2=717") -->
+<!-- ) -->
+
+<!-- #Gráfica -->
+<!-- p<- ggplot(temp3, aes(x = `effect size`, y = power, color = samples)) + -->
+<!--   geom_line(size=1) +  -->
+
+<!--   theme_bw() +  -->
+<!--   theme(axis.text=element_text(size=10),  -->
+<!--         axis.title=element_text(size=10),  -->
+<!--         legend.text=element_text(size=10)) + -->
+
+<!--   geom_vline(xintercept = .54, linetype = 2) + -->
+<!--   geom_hline(yintercept = 0.80, linetype = 2)+ -->
+
+<!--   labs(x="Effect size", y="Power") + -->
+<!--   scale_color_discrete(name = "Sampling size")  -->
+
+<!-- # so simple to make interactive plots -->
+<!-- plotly::ggplotly(p) -->
+<!-- ``` -->
 
